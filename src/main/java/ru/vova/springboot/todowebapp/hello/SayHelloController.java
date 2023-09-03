@@ -12,4 +12,9 @@ public class SayHelloController {
     public String sayHello() {
         return "Hello, World!";
     }
+
+    @RequestMapping("say-hello-jsp")
+    public String sayHelloJsp() {
+        return "sayHello";
+    }
 }
