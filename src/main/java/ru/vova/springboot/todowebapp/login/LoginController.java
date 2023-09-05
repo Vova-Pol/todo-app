@@ -11,6 +11,18 @@ public class LoginController {
     @RequestMapping("login")
     public String login(@RequestParam String name, ModelMap model) {
         model.put("name", name);
+
+    // Логгирование
+    // private Logger logger = LoggerFactory.getLogger(getClass());
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String goToLoginPage() {
+        // Debugging Logs
+        // Don't use System.out.print in PROD CODE
+//        logger.debug("Request Parameter is {}", name);
+//        logger.info("This will be printed at INFO level");
+//        logger.warn("This will be printed at WARN level");
+
         return "login";
     }
 }
