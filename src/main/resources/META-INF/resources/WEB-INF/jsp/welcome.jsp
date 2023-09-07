@@ -1,14 +1,17 @@
 <html>
 
     <head>
+        <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
         <title>Welcome Page</title>
     </head>
 
     <body>
-        <h1>Welcome, ${name}!</h1>
-        <div>
+        <div class="container">
+            <h1>Welcome, ${name}!</h1>
             <a href="/todos-list">Manage my Todos</a>
         </div>
+        <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+        <script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     </body>
 
 </html>
