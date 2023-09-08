@@ -1,10 +1,13 @@
 package ru.vova.springboot.todowebapp.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class Todo {
     private int id;
     private String userName;
+    @Size(min=10, message = "Enter at least 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean isDone;
