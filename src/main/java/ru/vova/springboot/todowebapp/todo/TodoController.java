@@ -20,11 +20,11 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @RequestMapping("todos-list")
+    @RequestMapping("todo-list")
     public String getAllTodos(ModelMap model) {
         List<Todo> todos = todoService.getTodos();
         model.addAttribute("todos", todos);
-        return "listTodos";
+        return "todo-list";
     }
 
     @RequestMapping(value ="add-todo", method = RequestMethod.GET)
@@ -44,13 +44,13 @@ public class TodoController {
 
         String userName = (String) model.get("name");
         todoService.addTodo(userName, todo.getDescription(), todo.getTargetDate(), false);
-        return "redirect:todos-list";
+        return "redirect:todo-list";
     }
 
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
         todoService.deleteTodoById(id);
-        return "redirect:todos-list";
+        return "redirect:todo-list";
     }
 
     @RequestMapping("update-todo")
@@ -69,7 +69,7 @@ public class TodoController {
 
         todo.setUserName((String) model.get("name"));
         todoService.updateTodo(todo);
-        return "redirect:todos-list";
+        return "redirect:todo-list";
     }
 
 
