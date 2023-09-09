@@ -2,6 +2,8 @@ package ru.vova.springboot.todowebapp.todo;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,7 +24,8 @@ public class TodoController {
 
     @RequestMapping("todo-list")
     public String getAllTodos(ModelMap model) {
-        List<Todo> todos = todoService.getTodos();
+        String username = getLoggedInUserName();
+        List<Todo> todos = todoService.getTodosByUserName(username);
         model.addAttribute("todos", todos);
         return "todo-list";
     }
@@ -70,6 +73,11 @@ public class TodoController {
         todo.setUserName((String) model.get("name"));
         todoService.updateTodo(todo);
         return "redirect:todo-list";
+    }
+
+    private String getLoggedInUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
 

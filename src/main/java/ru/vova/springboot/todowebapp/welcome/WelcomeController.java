@@ -1,5 +1,7 @@
 package ru.vova.springboot.todowebapp.welcome;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +14,13 @@ public class WelcomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showWelcomePage(ModelMap model) {
-        model.addAttribute("name", "Vladimir");
+        model.addAttribute("name", getLoggedInUserName());
         return "welcome";
+    }
+
+    private String getLoggedInUserName() {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       return authentication.getName();
     }
 
 }
