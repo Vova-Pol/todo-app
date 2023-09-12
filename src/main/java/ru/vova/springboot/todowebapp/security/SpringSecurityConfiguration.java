@@ -11,7 +11,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import java.util.function.Function;
 
 @Configuration
-public class SpringbootSecurityConfiguration {
+public class SpringSecurityConfiguration {
 
     @Bean
     public InMemoryUserDetailsManager createUserDetailManager() {
